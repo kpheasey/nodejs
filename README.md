@@ -40,8 +40,15 @@ Install node from packages:
 ```chef
 node['nodejs']['install_method'] = 'package' # Not necessary because it's the default
 include_recipe "nodejs"
+
 # Or
 include_recipe "nodejs::nodejs_from_package"
+
+# Or set a specific version of ndoejs to be installed
+node['nodejs']['install_method'] = 'package' # Not necessary because it's the default
+node.default['nodejs']['repo'] = 'https://deb.nodesource.com/node_10.x'
+node.default['nodejs']['version'] = '10.15.3'
+include_recipe "nodejs"
 ```
 
 By default this will setup deb/rpm repositories from nodesource.com, which include up to date NodeJS packages. If you prefer to use distro provided package you can disable this behavior by setting `node['nodejs']['install_repo']` to `false`.
